@@ -1,0 +1,132 @@
+serviceName: command_service
+grpc:
+  port: :5002
+  development: true
+probes:
+  readinessPath: /ready
+  livenessPath: /live
+  port: :3002
+  pprof: :6002
+  prometheusPath: /metrics
+  prometheusPort: :8002
+  checkIntervalSeconds: 10
+logger:
+  level: debug
+  devMode: false
+  encoder: json
+postgres:
+  host: localhost
+  port: 5432
+  user: identity_admin
+  password: postgres
+  dbName: user_identity
+  sslMode: false
+kafka:
+  brokers: [ "localhost:9092" ]
+  groupID: command_service_consumer
+  initTopics: true
+kafkaTopics:
+  userCreate:
+    topicName: user_create
+    partitions: 10
+    replicationFactor: 1
+  userUpdate:
+    topicName: user_update
+    partitions: 10
+    replicationFactor: 1
+  userCreated:
+    topicName: user_created
+    partitions: 10
+    replicationFactor: 1
+  userUpdated:
+    topicName: user_updated
+    partitions: 10
+    replicationFactor: 1
+  userDelete:
+    topicName: user_delete
+    partitions: 10
+    replicationFactor: 1
+  userDeleted:
+    topicName: user_deleted
+    partitions: 10
+    replicationFactor: 1
+  groupCreate:
+    topicName: group_create
+    partitions: 10
+    replicationFactor: 1
+  groupUpdate:
+    topicName: group_update
+    partitions: 10
+    replicationFactor: 1
+  groupCreated:
+    topicName: group_created
+    partitions: 10
+    replicationFactor: 1
+  groupUpdated:
+    topicName: group_updated
+    partitions: 10
+    replicationFactor: 1
+  groupDelete:
+    topicName: group_delete
+    partitions: 10
+    replicationFactor: 1
+  groupDeleted:
+    topicName: group_deleted
+    partitions: 10
+    replicationFactor: 1
+  membershipCreate:
+    topicName: membership_create
+    partitions: 10
+    replicationFactor: 1
+  membershipUpdate:
+    topicName: membership_update
+    partitions: 10
+    replicationFactor: 1
+  membershipCreated:
+    topicName: membership_created
+    partitions: 10
+    replicationFactor: 1
+  membershipUpdated:
+    topicName: membership_updated
+    partitions: 10
+    replicationFactor: 1
+  membershipDelete:
+    topicName: membership_delete
+    partitions: 10
+    replicationFactor: 1
+  membershipDeleted:
+    topicName: membership_deleted
+    partitions: 10
+    replicationFactor: 1
+  tokenBlacklist:
+    topicName: token_blacklist
+    partitions: 10
+    replicationFactor: 1
+  tokenBlacklisted:
+    topicName: token_blacklisted
+    partitions: 10
+    replicationFactor: 1
+  passwordUpdate:
+    topicName: password_update
+    partitions: 10
+    replicationFactor: 1
+  passwordUpdated:
+    topicName: password_updated
+    partitions: 10
+    replicationFactor: 1
+redis:
+  addr: "localhost:6379"
+  password: ""
+  db: 0
+  poolSize: 300
+jaeger:
+  enable: true
+  serviceName: command_service
+  hostPort: "localhost:6831"
+  logSpans: false
+initialization:
+  users:
+    root:
+      email: "root@example.com"
+      username: "root"
+      password: "abc123"

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package membershipCommandService;
+
+option go_package = "./;membershipCommandService";
+
+import "membership_command_messages.proto";
+
+
+service membershipCommandService {
+  rpc CreateMembership(CreateMembershipReq) returns (CreateMembershipRes);
+  rpc UpdateMembership(UpdateMembershipReq) returns (UpdateMembershipRes);
+  rpc GetMembershipById(GetMembershipByIdReq) returns (GetMembershipByIdRes);
+}

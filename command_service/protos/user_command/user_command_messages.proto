@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package commandService;
+
+option go_package = "./;commandService";
+
+message User {
+  string ID = 1;
+  string Email = 2;
+  string Username = 3;
+  string Password = 4;
+  bool   Root = 5;
+  bool   Active = 6;
+  google.protobuf.Timestamp CreatedAt = 7;
+  google.protobuf.Timestamp UpdatedAt = 8;
+}
+
+message CreateUserReq {
+  string ID = 1;
+  string Email = 2;
+  string Username = 3;
+  string Password = 4;
+  bool   Root = 5;
+  bool   Active = 6;
+}
+
+message CreateUserRes {
+  string ID = 1;
+}
+
+message UpdateUserReq {
+  string ID = 1;
+  string Email = 2;
+  string Username = 3;
+}
+
+message UpdateUserRes {}
+
+message GetUserByIdReq {
+  string ID = 1;
+}
+
+message GetUserByIdRes {
+  User User = 1;
+}

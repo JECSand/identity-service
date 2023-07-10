@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package groupQueryService;
+
+option go_package = "./;groupQueryService";
+
+import "group_query_messages.proto";
+
+
+service groupQueryService {
+  rpc CreateGroup(CreateGroupReq) returns (CreateGroupRes);
+  rpc UpdateGroup(UpdateGroupReq) returns (UpdateGroupRes);
+  rpc GetGroupById(GetGroupByIdReq) returns (GetGroupByIdRes);
+  rpc SearchGroup(SearchGroupReq) returns (SearchGroupRes);
+  rpc DeleteGroupByID(DeleteGroupByIdReq) returns (DeleteGroupByIdRes);
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package queryService;
+
+option go_package = "./;queryService";
+
+import "user_query_messages.proto";
+
+
+service queryService {
+  rpc CreateUser(CreateUserReq) returns (CreateUserRes);
+  rpc UpdateUser(UpdateUserReq) returns (UpdateUserRes);
+  rpc GetUserById(GetUserByIdReq) returns (GetUserByIdRes);
+  rpc SearchUser(SearchReq) returns (SearchRes);
+  rpc DeleteUserByID(DeleteUserByIdReq) returns (DeleteUserByIdRes);
+}

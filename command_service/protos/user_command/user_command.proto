@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package commandService;
+
+option go_package = "./;commandService";
+
+import "user_command_messages.proto";
+
+
+service commandService {
+  rpc CreateUser(CreateUserReq) returns (CreateUserRes);
+  rpc UpdateUser(UpdateUserReq) returns (UpdateUserRes);
+  rpc GetUserById(GetUserByIdReq) returns (GetUserByIdRes);
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package membershipQueryService;
+
+option go_package = "./;membershipQueryService";
+
+import "membership_query_messages.proto";
+
+
+service membershipQueryService {
+  rpc CreateMembership(CreateMembershipReq) returns (CreateMembershipRes);
+  rpc UpdateMembership(UpdateMembershipReq) returns (UpdateMembershipRes);
+  rpc GetMembershipById(GetMembershipByIdReq) returns (GetMembershipByIdRes);
+  rpc DeleteMembershipByID(DeleteMembershipByIdReq) returns (DeleteMembershipByIdRes);
+  rpc GetGroupMembership(GetGroupMembershipReq) returns (GetGroupMembershipRes);
+  rpc GetUserMembership(GetUserMembershipReq) returns (GetUserMembershipRes);
+}

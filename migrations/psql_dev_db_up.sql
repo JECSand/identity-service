@@ -1,0 +1,5 @@
+CREATE DATABASE user_identity;
+CREATE USER identity_admin WITH ENCRYPTED PASSWORD 'postgres';
+GRANT ALL PRIVILEGES ON DATABASE user_identity TO identity_admin;
+CREATE EXTENSION IF NOT EXISTS citext;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

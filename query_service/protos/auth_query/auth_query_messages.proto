@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package authQueryService;
+
+option go_package = "./;authQueryService";
+
+
+message User {
+  string ID = 1;
+  string Email = 2;
+  string Username = 3;
+  string Password = 4;
+  bool   Root = 5;
+  bool   Active = 6;
+  google.protobuf.Timestamp CreatedAt = 7;
+  google.protobuf.Timestamp UpdatedAt = 8;
+}
+
+
+message Blacklist {
+  string ID = 1;
+  string AccessToken = 2;
+  google.protobuf.Timestamp CreatedAt = 3;
+  google.protobuf.Timestamp UpdatedAt = 4;
+}
+
+
+message AuthenticateReq {
+  string Email = 1;
+  string Password = 2;
+}
+
+message AuthenticateRes {
+  User User = 1;
+  int64 Status = 2;
+}
+
+
+message BlacklistTokenReq {
+  string ID = 1;
+  string AccessToken = 2;
+}
+
+message BlacklistTokenRes {
+  string ID = 1;
+  int64 Status = 2;
+}
+
+
+message ValidateReq {
+  string UserID = 1;
+  string AccessToken = 2;
+  int64 ValidationType = 3;
+}
+
+message ValidateRes {
+  User User = 1;
+  int64 Status = 2;
+}
+
+
+message PasswordUpdateReq {
+  string ID = 1;
+  string CurrentPassword = 2;
+  string NewPassword = 3;
+}
+
+message PasswordUpdateRes {
+  int64 Status = 1;
+}

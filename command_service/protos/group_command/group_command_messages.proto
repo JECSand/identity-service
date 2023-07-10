@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package groupCommandService;
+
+option go_package = "./;groupCommandService";
+
+message Group {
+  string ID = 1;
+  string Name = 2;
+  string Description = 3;
+  string CreatorID = 4;
+  bool   Active = 5;
+  google.protobuf.Timestamp CreatedAt = 6;
+  google.protobuf.Timestamp UpdatedAt = 7;
+}
+
+
+message CreateGroupReq {
+  string ID = 1;
+  string Name = 2;
+  string Description = 3;
+  string CreatorID = 4;
+  bool   Active = 5;
+}
+
+message CreateGroupRes {
+  string ID = 1;
+}
+
+
+message UpdateGroupReq {
+  string ID = 1;
+  string Name = 2;
+  string Description = 3;
+}
+
+message UpdateGroupRes {}
+
+
+message GetGroupByIdReq {
+  string ID = 1;
+}
+
+message GetGroupByIdRes {
+  Group Group = 1;
+}

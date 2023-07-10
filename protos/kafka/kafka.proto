@@ -1,0 +1,236 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package kafkaMessages;
+
+option go_package = "./;kafkaMessages";
+
+// USERS
+message User {
+  string ID = 1;
+  string Email = 2;
+  string Username = 3;
+  string Password = 4;
+  bool   Root = 5;
+  bool   Active = 6;
+  google.protobuf.Timestamp CreatedAt = 7;
+  google.protobuf.Timestamp UpdatedAt = 8;
+}
+
+
+message UserCreate {
+  string ID = 1;
+  string Email = 2;
+  string Username = 3;
+  string Password = 4;
+  bool   Root = 5;
+  bool   Active = 6;
+}
+
+message UserCreated {
+  User User = 1;
+}
+
+
+message UserUpdate {
+  string ID = 1;
+  string Email = 2;
+  string Username = 3;
+}
+
+message UserUpdated {
+  User User = 1;
+}
+
+
+message UserDelete {
+  string ID = 1;
+}
+
+message UserDeleted {
+  string ID = 1;
+}
+
+
+// AUTH
+message Blacklist {
+  string ID = 1;
+  string AccessToken = 2;
+  google.protobuf.Timestamp CreatedAt = 3;
+  google.protobuf.Timestamp UpdatedAt = 4;
+}
+
+
+message TokenBlacklist {
+  string ID = 1;
+  string AccessToken = 2;
+}
+
+message TokenBlacklisted {
+  Blacklist Blacklist = 1;
+}
+
+
+message Authenticate {
+  string Email = 1;
+  string Password = 2;
+}
+
+message Authenticated {
+  User User = 1;
+  int64 Status = 2;
+}
+
+
+message Validate {
+  string UserID = 1;
+  string AccessToken = 2;
+  int64 ValidationType = 3;
+}
+
+message Validated {
+  User User = 1;
+  int64 Status = 2;
+}
+
+
+message Invalidate {
+  string ID = 1;
+  string AccessToken = 2;
+}
+
+message Invalidated {
+  int64 Status = 1;
+}
+
+
+message PasswordUpdate {
+  string ID = 1;
+  string CurrentPassword = 2;
+  string NewPassword = 3;
+}
+
+message PasswordUpdated {
+  string ID = 1;
+  int64 Status = 2;
+  string NewPassword = 3;
+  google.protobuf.Timestamp UpdatedAt = 4;
+}
+
+
+// GROUPS
+message Group {
+  string ID = 1;
+  string Name = 2;
+  string Description = 3;
+  string CreatorID = 4;
+  bool   Active = 5;
+  google.protobuf.Timestamp CreatedAt = 6;
+  google.protobuf.Timestamp UpdatedAt = 7;
+}
+
+
+message GroupCreate {
+  string ID = 1;
+  string Name = 2;
+  string Description = 3;
+  string CreatorID = 4;
+  bool   Active = 5;
+}
+
+message GroupCreated {
+  Group Group = 1;
+}
+
+
+message GroupUpdate {
+  string ID = 1;
+  string Name = 2;
+  string Description = 3;
+}
+
+message GroupUpdated {
+  Group Group = 1;
+}
+
+
+message GroupDelete {
+  string ID = 1;
+}
+
+message GroupDeleted {
+  string ID = 1;
+}
+
+
+// MEMBERSHIPS
+message Membership {
+  string ID = 1;
+  string UserID = 2;
+  string GroupID = 3;
+  int64  Status = 4;
+  int64  Role = 5;
+  google.protobuf.Timestamp CreatedAt = 6;
+  google.protobuf.Timestamp UpdatedAt = 7;
+}
+
+message UserMembership {
+  string ID = 1;
+  string GroupID = 2;
+  string UserID = 3;
+  string MembershipID = 4;
+  string Email = 5;
+  string Username = 6;
+  int64  Status = 7;
+  int64  Role = 8;
+  google.protobuf.Timestamp CreatedAt = 9;
+  google.protobuf.Timestamp UpdatedAt = 10;
+}
+
+message GroupMembership {
+  string ID = 1;
+  string UserID = 2;
+  string GroupID = 3;
+  string MembershipID = 4;
+  string Name = 5;
+  string Description = 6;
+  int64  Status = 7;
+  int64  Role = 8;
+  bool   Creator = 9;
+  google.protobuf.Timestamp CreatedAt = 10;
+  google.protobuf.Timestamp UpdatedAt = 11;
+}
+
+message MembershipCreate {
+  string ID = 1;
+  string UserID = 2;
+  string GroupID = 3;
+  int64  Status = 4;
+  int64  Role = 5;
+}
+
+message MembershipCreated {
+  Membership Membership = 1;
+  UserMembership UserMembership = 2;
+  GroupMembership GroupMembership = 3;
+}
+
+message MembershipUpdate {
+  string ID = 1;
+  int64  Status = 2;
+  int64  Role = 3;
+}
+
+message MembershipUpdated {
+  Membership Membership = 1;
+}
+
+
+message MembershipDelete {
+  string ID = 1;
+}
+
+message MembershipDeleted {
+  string ID = 1;
+}

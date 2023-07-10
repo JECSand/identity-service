@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package groupCommandService;
+
+option go_package = "./;groupCommandService";
+
+import "group_command_messages.proto";
+
+
+service groupCommandService {
+  rpc CreateGroup(CreateGroupReq) returns (CreateGroupRes);
+  rpc UpdateGroup(UpdateGroupReq) returns (UpdateGroupRes);
+  rpc GetGroupById(GetGroupByIdReq) returns (GetGroupByIdRes);
+}
